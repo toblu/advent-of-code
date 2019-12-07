@@ -59,8 +59,8 @@ console.log("Target is:", TARGET);
 const range0to99 = [...Array(100).keys()];
 
 console.log("Calculating...");
-range0to99.forEach(pos_1 => {
-  range0to99.forEach(pos_2 => {
+for (const pos_1 of range0to99) {
+  for (const pos_2 of range0to99) {
     try {
       const result = calculateResult(inputFile, pos_1, pos_2);
       if (result === TARGET) {
@@ -73,8 +73,8 @@ range0to99.forEach(pos_1 => {
     } catch (e) {
       // Do nothing, continue searching
     }
-  });
-});
+  }
+}
 
 console.log("Could not find correct inputs");
 process.exit(1);
