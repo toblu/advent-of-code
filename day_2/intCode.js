@@ -28,7 +28,7 @@ if (process.argv.length < 3) {
 
 const inputFilePath = path.resolve(__dirname, process.argv[2]);
 const inputFile = fs
-  .readFileSync(path.resolve(__dirname, inputFilePath), "utf8")
+  .readFileSync(inputFilePath, "utf8")
   .split(",")
   .map(value => +value);
 
