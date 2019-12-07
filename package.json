@@ -1,0 +1,10 @@
+{
+  "name": "advent-of-code-2019",
+  "version": "1.0.0",
+  "description": "Collection of solutions for the coding challenges for Advent of Code 2019",
+  "author": "Tobias Lundell",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
