@@ -3,13 +3,11 @@ const readFileInput = require("../helpers/readFileInput");
 const generateIntCodeComputer = require("../helpers/generateIntCodeComputer");
 const intCodeComputer = generateIntCodeComputer();
 
-const calculateResult = (input, address_1, address_2) => {
+const calculateResult = (input, address_1, address_2, cb) => {
   const codes = [...input];
   codes[1] = address_1 != null ? address_1 : input[1];
   codes[2] = address_2 != null ? address_2 : input[2];
-
-  const result = intCodeComputer.run(codes);
-  return result[0];
+  intCodeComputer.run(codes, cb);
 };
 
 if (process.argv.length < 3) {
@@ -24,14 +22,12 @@ const inputFile = readFileInput(process.argv[2])
 /**
  * ---------- Part 1 -----------
  * */
-
 console.log("---------- Part 1 ----------");
-console.log(
-  "Result:",
-  calculateResult(inputFile, +process.argv[3], +process.argv[4])
-);
-console.log("Part 1 done!");
-console.log("----------------------------\n");
+calculateResult(inputFile, +process.argv[3], +process.argv[4], result => {
+  console.log("Result:", result[0]);
+  console.log("Part 1 done!");
+  console.log("----------------------------\n");
+});
 
 /**
  * ---------- Part 1 end -------
@@ -51,14 +47,15 @@ console.log("Calculating...");
 for (const pos_1 of range0to99) {
   for (const pos_2 of range0to99) {
     try {
-      const result = calculateResult(inputFile, pos_1, pos_2);
-      if (result === TARGET) {
-        console.log("noun:", pos_1);
-        console.log("verb", pos_2);
-        console.log("Result:", 100 * pos_1 + pos_2);
-        console.log("Part 2 done!");
-        return;
-      }
+      calculateResult(inputFile, pos_1, pos_2, result => {
+        if (result[0] === TARGET) {
+          console.log("noun:", pos_1);
+          console.log("verb", pos_2);
+          console.log("Result:", 100 * pos_1 + pos_2);
+          console.log("Part 2 done!");
+          process.exit(0);
+        }
+      });
     } catch (e) {
       // Do nothing, continue searching
     }
