@@ -1,5 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+const readFileInput = require("../helpers/readFileInput");
 
 const generateIntCodeComputer = require("../helpers/generateIntCodeComputer");
 const intCodeComputer = generateIntCodeComputer();
@@ -18,9 +17,7 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-const inputFilePath = path.resolve(__dirname, process.argv[2]);
-const inputFile = fs
-  .readFileSync(inputFilePath, "utf8")
+const inputFile = readFileInput(process.argv[2])
   .split(",")
   .map(value => +value);
 

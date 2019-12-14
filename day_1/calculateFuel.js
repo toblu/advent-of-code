@@ -1,5 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+const readFileInput = require("../helpers/readFileInput");
 
 // Get fuel required for a specific mass
 const getFuelConsumptionByMass = mass => {
@@ -16,7 +15,7 @@ const calculateFuelConsumption = fuelMass => {
 };
 
 const getModuleMasses = filePath => {
-  const input = fs.readFileSync(path.resolve(__dirname, filePath), "utf8");
+  const input = readFileInput(filePath);
   return input.split("\n").map(value => +value);
 };
 

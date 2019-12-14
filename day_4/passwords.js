@@ -1,10 +1,8 @@
-const fs = require("fs");
-const path = require("path");
+const readFileInput = require("../helpers/readFileInput");
 
-const { uniq, range } = require("lodash");
+const { range } = require("lodash");
 
-const inputFilePath = "input.txt";
-let [rangeStart, rangeEnd] = fs.readFileSync(inputFilePath, "utf8").split("-");
+let [rangeStart, rangeEnd] = readFileInput(process.argv[2]).split("-");
 rangeStart = parseInt(rangeStart, 10);
 rangeEnd = parseInt(rangeEnd, 10);
 

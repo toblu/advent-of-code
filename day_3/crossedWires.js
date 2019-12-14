@@ -1,10 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+const readFileInput = require("../helpers/readFileInput");
 const { inRange, range, intersection, findIndex } = require("lodash");
 
-const inputFilePath = path.resolve(__dirname, process.argv[2] || "wires.txt");
+const inputFile = process.argv[2];
 
-let [wire1Path, wire2Path] = fs.readFileSync(inputFilePath, "utf8").split("\n");
+let [wire1Path, wire2Path] = readFileInput(inputFile).split("\n");
 
 wire1Path = wire1Path.split(",");
 wire2Path = wire2Path.split(",");
