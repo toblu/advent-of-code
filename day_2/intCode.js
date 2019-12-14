@@ -1,24 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 
-const getOpResult = (opCode, a, b) => {
-  if (opCode === 1) return a + b;
-  if (opCode === 2) return a * b;
-  throw new Error("Unexpected Opcode: ", opCode);
-};
+const generateIntCodeComputer = require("../helpers/generateIntCodeComputer");
+const intCodeComputer = generateIntCodeComputer();
 
 const calculateResult = (input, address_1, address_2) => {
   const codes = [...input];
   codes[1] = address_1 != null ? address_1 : input[1];
   codes[2] = address_2 != null ? address_2 : input[2];
 
-  let i = 0;
-  while (codes[i] !== 99) {
-    const [opCode, param1, param2, resPos] = codes.slice(i, i + 4);
-    codes[resPos] = getOpResult(opCode, codes[param1], codes[param2]);
-    i = i + 4;
-  }
-  return codes[0];
+  const result = intCodeComputer.run(codes);
+  return result[0];
 };
 
 if (process.argv.length < 3) {
