@@ -28,9 +28,6 @@ const generateIntCodeComputer = (additionalOperations = {}) => {
 
     while (index < instructions.length && instructions[index] !== 99) {
       const opCode = instructions[index] % 100;
-      if (index === 10) {
-        debugger;
-      }
       const paramModes =
         instructions[index] >= 100
           ? [...instructions[index].toString()]
