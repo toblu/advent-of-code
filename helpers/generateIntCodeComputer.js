@@ -42,7 +42,7 @@ const generateIntCodeComputer = (additionalOperations = {}) => {
           getParamValues(paramModes, instructions)
         );
       } else {
-        throw new Error("Unexpected Opcode: ", opCode);
+        throw new Error(`Unexpected Opcode: ${opCode}`);
       }
     }
     return [instructions, index];

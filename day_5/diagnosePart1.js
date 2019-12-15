@@ -11,11 +11,15 @@ const codes = readFileInput(process.argv[2])
   .split(",")
   .map(value => +value);
 
-const additionalInstructions = {
+/**
+ * ----------- Part 1 -------------
+ */
+const additionalInstructionsPart1 = {
   3: (instructions, index) =>
     new Promise(resolve => {
       const newInstructions = [...instructions];
       const [r] = instructions.slice(index + 1, index + 2);
+      resolve([newInstructions, index + 2]);
       rl.question("Input: ", input => {
         newInstructions[r] = +input;
         resolve([newInstructions, index + 2]);
@@ -29,6 +33,11 @@ const additionalInstructions = {
   }
 };
 
-const intCodeComputer = generateIntCodeComputer(additionalInstructions);
+const intCodeComputerPart1 = generateIntCodeComputer(
+  additionalInstructionsPart1
+);
 
-intCodeComputer.run(codes);
+intCodeComputerPart1.run(codes);
+/**
+ * ----------- Part 1 end -------------
+ */
