@@ -10,7 +10,7 @@
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
       "program": "${file}",
-      "args": ["day_5/codes.txt"]
+      "args": ["day_6/orbits.txt"]
     }
   ]
 }
